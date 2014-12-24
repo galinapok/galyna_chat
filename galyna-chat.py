@@ -37,7 +37,7 @@ def get_parsed_news():
 
 	digest_message = ""
 	for title in titles:
-		digest_message = "<a href=\"http://stackoverflow.com" + digest_message + title + '<br>'
+		digest_message += "<a href=\"http://stackoverflow.com" + title + '<br>'
 
 	return digest_message
 
