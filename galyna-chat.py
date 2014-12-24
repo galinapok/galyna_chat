@@ -33,7 +33,7 @@ def get_parsed_news():
 	news_html = urllib2.urlopen("http://stackoverflow.com/").read()
 	regex = re.compile('<h3><a\shref="([^>]*>[^<]*</a>)')
 	titles = regex.findall(news_html)
-	titles = titles[2:7]
+	titles = titles[2:12]
 
 	digest_message = ""
 	for title in titles:
@@ -43,13 +43,13 @@ def get_parsed_news():
 
 def background_thread():
 	while True:
-		time.sleep(15)
+		time.sleep(30)
 		#print "timer tick"
 		news_message = get_parsed_news()
 		socketio.emit('server message sent',
 			{'user': 'bot', 'message': news_message, 'room': '*', 'time_received': str(datetime.datetime.now()) },
 			namespace= '/room-socket')
-		time.sleep(45)
+		time.sleep(90)
 
 
 @app.route('/')
