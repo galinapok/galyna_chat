@@ -32,9 +32,11 @@ def connect_db():
 
 def get_parsed_news():
 	#news_html = urllib2.urlopen("https://news.ycombinator.com/newest").read()
-	r = http.request('GET', "https://news.ycombinator.com/newest")
+	#!r = http.request('GET', "https://news.ycombinator.com/newest")
+	r = http.request('GET', "http://www.i.ua")
 	news_html = r.data
-	regex = re.compile('<td\s+class="title">(<a[^>]*>[^<]*</a>)')
+	#!regex = re.compile('<td\s+class="title">(<a[^>]*>[^<]*</a>)')
+	regex = re.compile('</span>(<a[^>]*>[^<]*</a>)')
 	titles = regex.findall(news_html)
 	titles = titles[:5]
 
