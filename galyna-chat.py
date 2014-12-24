@@ -7,6 +7,7 @@ from threading import Thread
 import urllib2
 import re
 from werkzeug.contrib.fixers import ProxyFix
+import os
 
 ### WEB APP (HTTP)
 
@@ -228,5 +229,5 @@ def close_connection(exception):
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    socketio.run(app, port=80)
+    socketio.run(app, port=os.environ['PORT'])
 
