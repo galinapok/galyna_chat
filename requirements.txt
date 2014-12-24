@@ -11,4 +11,3 @@ itsdangerous==0.23
 ujson==1.33
 bcrypt
 gunicorn
-urllib3
