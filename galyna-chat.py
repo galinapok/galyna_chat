@@ -31,7 +31,7 @@ def connect_db():
 def get_parsed_news():
 	#news_html = urllib2.urlopen("https://news.ycombinator.com/newest").read()
 	news_html = urllib2.urlopen("http://stackoverflow.com/").read()
-	regex = re.compile('<h3><a\shref="([^>]*>[^<]*)</a>')
+	regex = re.compile('<h3><a\shref="([^>]*>[^<]*</a>)')
 	titles = regex.findall(news_html)
 	titles = titles[:5]
 
