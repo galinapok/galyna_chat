@@ -1,1 +1,1 @@
-gunicorn galyna-chat:app
+web: gunicorn galyna-chat:app --log-file -
