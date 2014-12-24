@@ -31,13 +31,13 @@ def connect_db():
 def get_parsed_news():
 	#news_html = urllib2.urlopen("https://news.ycombinator.com/newest").read()
 	news_html = urllib2.urlopen("http://stackoverflow.com/").read()
-	regex = re.compile('h3>(<a[^>]*>[^<]*</a>)')
+	regex = re.compile('<h3><a\shref="([^>]*>[^<]*)</a>')
 	titles = regex.findall(news_html)
 	titles = titles[:5]
 
 	digest_message = ""
 	for title in titles:
-		digest_message = digest_message + title + '<br>'
+		digest_message = "<a href=\"http://stackoverflow.com" + digest_message + title + '<br>'
 
 	return digest_message
 
