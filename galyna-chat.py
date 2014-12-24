@@ -4,7 +4,8 @@ import datetime
 from flask.ext.socketio import SocketIO, emit
 import time
 from threading import Thread
-import urllib2
+#import urllib2
+import urllib3
 import re
 from werkzeug.contrib.fixers import ProxyFix
 import os
@@ -17,6 +18,7 @@ app.debug = True
 DATABASE = 'app_db.db'
 socketio = SocketIO(app)
 thread = None
+http = urllib3.PoolManager()
 
 def connect_to_database():	
 	return sqlite3.connect(DATABASE )
@@ -29,7 +31,9 @@ def connect_db():
     return db
 
 def get_parsed_news():
-	news_html = urllib2.urlopen("https://news.ycombinator.com/newest").read()
+	#news_html = urllib2.urlopen("https://news.ycombinator.com/newest").read()
+	r = http.request('GET', "https://news.ycombinator.com/newest")
+	news_html = r.data
 	regex = re.compile('<td\s+class="title">(<a[^>]*>[^<]*</a>)')
 	titles = regex.findall(news_html)
 	titles = titles[:5]
