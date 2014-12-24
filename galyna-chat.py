@@ -33,7 +33,7 @@ def get_parsed_news():
 	news_html = urllib2.urlopen("http://stackoverflow.com/").read()
 	regex = re.compile('<h3><a\shref="([^>]*>[^<]*</a>)')
 	titles = regex.findall(news_html)
-	titles = titles[:5]
+	titles = titles[2:7]
 
 	digest_message = ""
 	for title in titles:
