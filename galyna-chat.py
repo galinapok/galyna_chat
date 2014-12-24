@@ -229,5 +229,5 @@ def close_connection(exception):
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    socketio.run(app, port=os.environ['PORT'])
+    socketio.run(app, port=int(os.environ['PORT'])
 
