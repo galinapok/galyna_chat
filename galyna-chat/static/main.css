@@ -1,0 +1,16 @@
+.error_message {
+	background-color: red
+} 
+.ok_message {
+	background-color: green
+}
+#content {
+	width: 900px;
+}
+#left_column {
+	float: left;
+	width: 200px;
+}
+#right_column {
+	float: left;
+}

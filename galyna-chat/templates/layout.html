@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/main.css">
+	<script type="text/javascript" src="/static/jquery-2.1.3.min.js"></script>
+	{% block head %}{% endblock %}
+</head>
+<body background='/static/connection.jpg'>
+    <div id="content">
+    	<h1><a href="/"><img src="/static/chat.jpg" width="200" height="70" border="0" alt="Welcome to chat"></a>
+		</h1>
+    	{% block content %}{% endblock %}</div>    
+
+  </body>
+</html>
+

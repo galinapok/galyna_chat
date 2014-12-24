@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block head %}
+<script type="text/javascript" src="/static/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+	var room_name = "{{room_name}}";
+
+    $(document).ready(function(){
+		namespace = '/room-socket'; // change to an empty string to use the global namespace
+
+	    // the socket.io documentation recommends sending an explicit package upon connection
+	    // this is specially important when using the global namespace
+	    var socket = io.connect('http://' + document.domain + ':' + location.port + namespace);
+	    socket.on('connect', function() {
+	    	console.info("connect");
+	        socket.emit('connection established', {data: 'I\'m connected!'});
+	    	console.info("connect after");
+	    });
+
+	    $('#send_chat_message').click ( function(){
+	    	console.info("send_chat_message");
+
+	    	var user_message = $('#user_message').val();
+	    	socket.emit('client message sent', {data: user_message, room: room_name});
+
+	    	console.info("send_chat_message_after");
+	    	return false;
+	    });
+	    
+	    socket.on('server message sent', function(data) {
+	    	console.info("server message sent: ", data);
+	    	if ((data.room == room_name) || (data.room == '*')) {
+	    		$('#messages').append('[' + data.time_received + '] <u>' + data.user+ '</u>: <b>' + data.message + '</b><br>');
+	    	}
+	    });
+
+	    // $('#messages').append('<br> test messages');
+	    // $('#head').append('<br> one more append');
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<h1 id = "head">You are in room {{room_name}}</h1>
+<div id="messages">
+</div>
+<form>
+<input id="user_message" type='text' name="user_message">
+<input type="submit" id ="send_chat_message" value="send chat message"/>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<p>Plese login here </p>
+{% for login_error in login_errors %}
+	<p class={{login_error[0]}}_message >{{login_error[1]}}</p>
+{% endfor %}
+<form method="POST" action="/login-action" >
+	<input type="submit" value="login" name="login">
+	<label for="username">User name</label>
+	<input id="username" type='text' name="username">	
+	<label for="password">Password</label>
+	<input id="password" type='password' name="password">
+</form>
+
+{% endblock %}

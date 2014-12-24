@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div id="left_column">
+{% if not login_status %}
+	
+	<form method="POST" action="/signup-action" >	
+		<label for="username">User name</label>
+		<input id="username" type='text' name="username">	
+		<label for="email">Email adress</label>
+		<input id="email" type='text' name="email">	
+		<label for="password">Password</label>
+		<input id="email" type='password' name="password">
+		<input type="submit" value="OK">
+		{% for exception in exceptions %}
+			<p class={{exception[0]}}_message >{{exception[1]}}</p>
+		{% endfor %}
+	</form>
+	</p>
+
+	<p>
+		<a href="../../login">Login</a>
+	</p>
+{% endif %}
+{% if login_status %}
+	{% if name %}
+		<p> You logged on as {{username}}{{name}}</p>
+	{% endif %}
+	<form method="POST" action="/logout-action" >
+		<input type="submit" value="Logout" name="logout">
+	</form>
+{% endif %}
+</div> <!-- left_column -->
+
+<div id="right_column">
+<p>
+	<form method="POST" action="/create-room-action" >		
+		<label for="room_name">Enter room name here</label>
+		<input id="room_name" type='text' name="room_name">
+		<input type="submit" name="create_new" value="Create a new room">
+	</form>
+	
+	<form method="POST"  action="room-delete-action">
+		<p><b> Rooms avaliable:</b> </p>
+		<p> {% for a in  room_all %}
+			<p>
+				
+					<a href="/room/{{a[1]}}">{{a[1]}}</a> 
+					<input type="checkbox" name="room_delete" value={{a[0]}}><br>									
+				
+			</p>
+			{% endfor%}			
+		</p>
+		<input type="submit" value="Delete selected">
+	</form>
+		
+	
+</p>
+<p>
+{{news}}
+</p>
+</div> <!-- right_column -->
+{% endblock %}
