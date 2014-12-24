@@ -1,2 +1,0 @@
-DEBUG=1 gunicorn -b 0.0.0.0:5000 --error-logfile _error \
---access-logfile _access --log-file _log galyna-chat:app
