@@ -1,0 +1,1 @@
+gunicorn galyna-chat:app
