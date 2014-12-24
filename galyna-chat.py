@@ -52,10 +52,10 @@ def background_thread():
 
 @app.route('/')
 def home():
-#!!!	global thread
-#	if thread is None:
-#		thread = Thread(target=background_thread)
-#		thread.start()
+	global thread
+	if thread is None:
+		thread = Thread(target=background_thread)
+		thread.start()
 
 	db =  connect_db()
 	cur = db.cursor()
@@ -227,6 +227,6 @@ def close_connection(exception):
 #app.wsgi_app = ProxyFix(app.wsgi_app)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    #!!!socketio.run(app)
+    #app.run(debug=True)
+    socketio.run(app)
 
