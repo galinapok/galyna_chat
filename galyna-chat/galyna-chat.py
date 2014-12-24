@@ -6,6 +6,7 @@ import time
 from threading import Thread
 import urllib2
 import re
+from werkzeug.contrib.fixers import ProxyFix
 
 ### WEB APP (HTTP)
 
@@ -221,6 +222,8 @@ def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:	
     	db.close()
+    	
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 if __name__ == '__main__':
     #app.run(debug=True)
