@@ -13,7 +13,7 @@ from werkzeug.contrib.fixers import ProxyFix
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'F34TF$($e34Dfff';
 app.debug = True
-DATABASE = '/home/galina/test1/app_db.db'
+DATABASE = 'app_db.db'
 socketio = SocketIO(app)
 thread = None
 
