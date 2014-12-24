@@ -12,6 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'F34TF$($e34Dfff';
+app.debug = True
 DATABASE = '/home/galina/test1/app_db.db'
 socketio = SocketIO(app)
 thread = None
@@ -223,9 +224,9 @@ def close_connection(exception):
     if db is not None:	
     	db.close()
     	
-app.wsgi_app = ProxyFix(app.wsgi_app)
+#app.wsgi_app = ProxyFix(app.wsgi_app)
 
-#if __name__ == '__main__':
-    #app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
     #!!!socketio.run(app)
 
