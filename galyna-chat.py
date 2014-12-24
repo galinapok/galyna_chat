@@ -51,10 +51,10 @@ def background_thread():
 
 @app.route('/')
 def home():
-	global thread
-	if thread is None:
-		thread = Thread(target=background_thread)
-		thread.start()
+#!!!	global thread
+#	if thread is None:
+#		thread = Thread(target=background_thread)
+#		thread.start()
 
 	db =  connect_db()
 	cur = db.cursor()
@@ -64,7 +64,7 @@ def home():
 	name= ""
 	cur.execute('''SELECT ID, NAME FROM ROOMS ''')
 	room_all = cur.fetchall()
-	print (room_all)			
+	#print (room_all)			
 	if 'name' in session:
 		name = session['name']	
 	print ("session is ", session)
@@ -225,7 +225,7 @@ def close_connection(exception):
     	
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     #app.run(debug=True)
-    socketio.run(app)
+    #!!!socketio.run(app)
 
