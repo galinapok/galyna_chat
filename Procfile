@@ -1,1 +1,1 @@
-web: gunicorn galyna-chat:app -k "gevent" --log-file -
+web: python galyna-chat.py
